@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="matematik-quiz.js"></script>
+    <title>MADÜ</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('MainMedia/Ekran-görüntüsü-2024-12-18-173502.png');
+            background-size: 100% 100%;
+            font-family: Arial, sans-serif;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu button {
+            padding: 10px 20px;
+            font-size: 24px;
+        }
+        .card {
+            padding: 1rem 2rem;
+            border-radius: 1.25rem;
+            position: relative;
+            z-index: 10;
+        }
+        .loader {
+            color: rgb(255, 255, 255);
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-size: 25px;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            height: 30px;
+            margin-left: 40px; /* Boşluk miktarını artırıp azaltabilirsin */
+            white-space: nowrap; /* Kaymasını önler */
+            padding: 10px 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            border-radius: 8px;
+            z-index: 30; /* Ensure text is above other elements */
+            position: relative; /* Yeni eklenmiş */
+        }
+        .words {
+            overflow: hidden;
+            position: relative;
+            top: 24px;
+            z-index: 15;
+        }
+        .words::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+        }
+        .word {
+            display: block;
+            height: 100%;
+            padding-left: 6px;
+            color: #0077ff;
+            animation: spin_4991 4s infinite;
+        }
+        @keyframes spin_4991 {
+            10% {
+                -webkit-transform: translateY(-102%);
+                transform: translateY(-102%);
+            }
+            25% {
+                -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+            }
+            35% {
+                -webkit-transform: translateY(-202%);
+                transform: translateY(-202%);
+            }
+            50% {
+                -webkit-transform: translateY(-200%);
+                transform: translateY(-200%);
+            }
+            60% {
+                -webkit-transform: translateY(-302%);
+                transform: translateY(-302%);
+            }
+            75% {
+                -webkit-transform: translateY(-300%);
+                transform: translateY(-300%);
+            }
+            85% {
+                -webkit-transform: translateY(-402%);
+                transform: translateY(-402%);
+            }
+            100% {
+                -webkit-transform: translateY(-400%);
+                transform: translateY(-400%);
+            }
+        }
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0);
+            z-index: 1000;
+        }
+        #loadingScreen video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Load1 sınıfı düzeltilmiş */
+        .load1 {
+            display: inline-block;
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+            z-index: 20;
+        }
+        /* Switch styles */
+        .rocker {
+            display: inline-block;
+            position: relative;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            color: #888;
+            width: 7em;
+            height: 4em;
+            overflow: hidden;
+            border-bottom: 0.5em solid #eee;
+        }
+
+        .rocker-small {
+            font-size: 0.75em;
+            margin: 1em;
+        }
+
+        .rocker::before {
+            content: "";
+            position: absolute;
+            top: 0.5em;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #999;
+            border: 0.5em solid #eee;
+            border-bottom: 0;
+        }
+
+        .rocker input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .switch-left,
+        .switch-right {
+            cursor: pointer;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.5em;
+            width: 3em;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .switch-left {
+            height: 2.4em;
+            width: 2.75em;
+            left: 0.85em;
+            bottom: 0.4em;
+            background-color: #ddd;
+            transform: rotate(15deg) skewX(15deg);
+        }
+
+        .switch-right {
+            right: 0.5em;
+            bottom: 0;
+            background-color: #bd5757;
+            color: #fff;
+        }
+
+        .switch-left::before,
+        .switch-right::before {
+            content: "";
+            position: absolute;
+            width: 0.4em;
+            height: 2.45em;
+            bottom: -0.45em;
+            background-color: #ccc;
+            transform: skewY(-65deg);
+        }
+
+        .switch-left::before {
+            left: -0.4em;
+        }
+
+        .switch-right::before {
+            right: -0.375em;
+            background-color: transparent;
+            transform: skewY(65deg);
+        }
+
+        input:checked + .switch-left {
+            background-color: #0084d0;
+            color: #fff;
+            bottom: 0px;
+            left: 0.5em;
+            height: 2.5em;
+            width: 3em;
+            transform: rotate(0deg) skewX(0deg);
+        }
+
+        input:checked + .switch-left::before {
+            background-color: transparent;
+            width: 3.0833em;
+        }
+
+        input:checked + .switch-left + .switch-right {
+            background-color: #ddd;
+            color: #888;
+            bottom: 0.4em;
+            right: 0.8em;
+            height: 2.4em;
+            width: 2.75em;
+            transform: rotate(-15deg) skewX(-15deg);
+        }
+
+        input:checked + .switch-left + .switch-right::before {
+            background-color: #ccc;
+        }
+
+        /* Slider styles */
+        .slider {
+            --slider-width: 100%;
+            --slider-height: 50px;
+            --slider-bg: rgb(82, 82, 82);
+            --slider-border-radius: 9px;
+            --level-color: #fff;
+            --level-transition-duration: 0.1s;
+            --icon-margin: 15px;
+            --icon-color: var(--slider-bg);
+            --icon-size: 25px;
+            position: relative;
+            cursor: pointer;
+            display: inline-flex;
+            flex-direction: row-reverse;
+            align-items: center;
+        }
+
+        .slider .volume {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: var(--icon-margin);
+            color: var(--icon-color);
+            width: var(--icon-size);
+            height: auto;
+            position: absolute;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .slider .level {    
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: var(--slider-width);
+            height: var(--slider-height);
+            background: var(--slider-bg);
+            overflow: hidden;
+            border-radius: var(--slider-border-radius);
+            transition: height var(--level-transition-duration);
+            cursor: inherit;
+            transform: rotate(270deg);
+        }
+
+        .slider .level::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 0;
+            height: 0;
+            box-shadow: -200px 0 0 200px var(--level-color);
+        }
+
+        .slider .level::-moz-range-thumb {
+            width: 0;
+            height: 0;
+            box-shadow: -200px 0 0 200px var(--level-color);
+        }
+    </style>
+    <!-- Matematik Quiz Javascript dosyasını ekleyin -->
+    <script src="matematik-quiz.js"></script>
+</head>
+<body>
+    <div id="loadingScreen">
+        <video autoplay loop muted>
+            <source src="MainMedia/loadingscreen.mp4" type="video/mp4">
+        </video>
+        <div class="card">
+            <div class="loader">
+                <div class="words">
+                    <span class="word"><b>Veriler</b></span>
+                    <span class="word"><b>Kodlar</b></span>
+                    <span class="word"><b>Dosyalar</b></span>
+                    <span class="word"><b>Resimler</b></span>
+                    <span class="word"><b>Yazılar</b></span>
+                </div>
+                <p class="load1">&nbsp;&nbsp;<b>Yükleniyor...</b></p>             
+            </div>
+        </div>
+    </div>
+
+    <h1 class="title" style="margin-left:40px; display: none;">MADÜ</h1>
+    <h2 class="title" style="margin-left:40px; display: none;">Matematiğin Ana Dünyası</h2><br>
+
+    <div class="menu" style="display: none;">
+        <ul class="ul">
+            <li class="li">
+                <button class="button" onclick="startGame(); hideTitle()"><p class="p">Başla</p></button>
+            </li>
+            <li class="li">
+                <button class="button" onclick="showAbout(); hideTitle()"><p class="p">Hakkımızda</p></button>
+            </li>
+            <li class="li">
+                <button class="button" onclick="showSettings(); hideTitle()"><p class="p">Ayarlar</p></button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="settingsMenu" style="display: none;">
+        <h2 style="margin-bottom: 20px;">Ayarlar</h2>
+        <br>
+        <div style="margin-bottom: 20px; text-align: middle;">
+            <h3>Ses</h3>
+            <br>
+            <br>
+            <label class="slider">
+                <input type="range" class="level" />
+                <svg
+                    class="volume"
+                    xmlns="http://www.w3.org/2000/svg"
+                    version="1.1"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="0"
+                    height="0"
+                    x="0"
+                    y="0"
+                    
+                    viewBox="0 0 0 0"
+                    style="enable-background:new 0 0 0 0"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+                            fill="currentColor"
+                            data-original="#000000"
+                        ></path>
+                        <path
+                            d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+                            fill="currentColor"
+                            data-original="#000000"
+                        ></path>
+                    </g>
+                </svg>
+            </label>
+        </div>
+        <div style="margin-bottom: 20px; text-align: middle;">
+            <br>
+            <br>
+            <h3>Müzik</h3>
+            <br>
+            <br>
+            <label class="slider">
+                <input type="range" class="level" />
+                <svg
+                    class="volume"
+                    xmlns="http://www.w3.org/2000/svg"
+                    version="1.1"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="0"
+                    height="0"
+                    x="0"
+                    y="0"
+                    viewBox="0 0 0 0"
+                    style="enable-background:new 0 0 0 0"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+                            fill="currentColor"
+                            data-original="#000000"
+                        ></path>
+                        <path
+                            d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+                            fill="currentColor"
+                            data-original="#000000"
+                        ></path>
+                    </g>
+                </svg>
+            </label>
+        </div>
+        <br>
+        <br>
+        <br>
+        <ul class="ul">
+            <li class="li">
+                <button class="button" onclick="closeSettings()"><p class="p">Kapat</p></button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="aboutScreen" style="display: none; text-align: center;">
+        <h2>Hakkımızda</h2>
+        <div class="about-scroll" style="width: 1400px; height: 700px; overflow: hidden; position: relative;">
+            <div class="scroll-content" style="position: absolute; animation: scrollUp 70s linear infinite;">
+            <h3>MADÜ</h3><br>
+            <p>Matematiğin Ana Dünyası</p>
+
+            <p>MADÜ, ilkokul, ortaokul ve lise öğrencileri için yapay zeka destekli olarak tasarlanmış eğlenceli bir matematik oyunudur. Her sınıf seviyesi için özel hazırlanmış bölümler ve konulara göre ayrılmış seviyeler içerir.</p>
+
+            <p><strong>Yapay Zeka Özellikleri:</strong></p>
+            <ul>
+                <li>Kişiselleştirilmiş zorluk seviyeleri</li>
+                <li>Öğrenci performansına göre soru üretimi</li>
+                <li>Gerçek zamanlı geri bildirim sistemi</li>
+                <li>Öğrenme analizi ve ilerleme takibi</li>
+            </ul>
+
+            <p><strong>Oyun Özellikleri:</strong></p>
+            <ul>
+                <li>12 Sınıf seviyesi (1-12. sınıflar)</li>
+                <li>Her sınıfta 4 farklı konu (Sayılar ve İşlemler, Geometri, Ölçme, Veri İşleme)</li>
+                <li>Her konuda rastgele oluşturulan 10 soru</li>
+                <li>Her bölüm sonunda tüm konulardan karışık sorular içeren boss seviyesi</li>
+                <li>Rekabetçi oyun sistemi: Oyuncu vs Düşman</li>
+                <li>Seviye atlama sistemi: 10/10 başarı ile bir sonraki seviyeye geçiş</li>
+            </ul>
+
+            <p><strong>Geliştirdiği Beceriler:</strong></p>
+            <ul>
+                <li>Matematiksel düşünme ve problem çözme</li>
+                <li>Hızlı karar verme ve analitik düşünme</li>
+                <li>Sayısal hafıza ve mantık yürütme</li>
+                <li>Zaman yönetimi ve konsantrasyon</li>
+                <li>Stratejik planlama ve hedef odaklı çalışma</li>
+            </ul>
+
+            <p><strong>Nasıl Oynanır:</strong></p>
+            <ol>
+                <li>İstediğiniz bölümü (sınıfı) seçin</li>
+                <li>Konular arasından seviye seçin</li>
+                <li>Soruları doğru cevaplayarak ilerleyin</li>
+                <li>Tüm soruları doğru yanıtlayarak bir sonraki seviyeye geçin</li>
+                <li>Bölüm sonundaki boss seviyesini geçerek bir sonraki bölüme ilerleyin</li>
+            </ol>
+
+            <p><strong>Hakkımızda:</strong><br>
+            <br>
+            MADÜ, Warden Zone Studio (WZS) tarafından geliştirilmiştir. 2025 yılında kurulan ekibimiz, güzel oyunlar üretmeyi hedeflemektedir. Yapay zeka destekli eğitim oyunlarımızla öğrencilerin matematik öğrenme sürecini daha eğlenceli ve verimli hale getirmeyi amaçlıyoruz. Her hangi bir sitemiz bize ulaşabileceğiniz bir yer bulunmamaktadır.</p>
+
+            <p>
+            Yapımcı: Warden Zone Studio (WZS)<br>
+            WZS Kuruluş Tarihi: 20.01.2025<br>
+            Oyunun Çıkış Tarihi: 1 Şubat 2025<br>
+            Versiyon: 1.0
+            </p>
+            </div>
+        </div>
+        <style>
+            .about-scroll {
+                border: 1px solid #ccc;
+                padding: 20px;
+                margin: 20px;
+                border-radius: 10px;
+            }
+            @keyframes scrollUp {
+                0% { transform: translateY(80%); }
+                100% { transform: translateY(-100%); }
+            }
+        </style>
+        <ul class="ul">
+            <li class="li">
+                <button class="button" onclick="closeAbout()"><p class="p">Kapat</p></button>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Yükleme ekranını göster
+            document.getElementById('loadingScreen').style.display = 'flex';
+            
+            // 6 saniye sonra ana menüyü göster
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.display = 'none';
+                document.querySelector('.menu').style.display = 'flex';
+                document.querySelectorAll('.title').forEach(title => {
+                    title.style.display = 'block';
+                });
+            }, 6000);
+        };
+        
+        function showLoadingScreen() {
+            if (!document.hidden) { // Prevent showing loading screen when switching tabs
+                document.getElementById('loadingScreen').style.display = 'flex'; // 'block' yerine 'flex' kullanın
+                document.querySelector('.menu').style.display = 'none';
+                document.getElementById('settingsMenu').style.display = 'none';
+                document.getElementById('aboutScreen').style.display = 'none';
+                
+                document.querySelectorAll('.title').forEach(title => {
+                    title.style.display = 'none';
+                });
+                
+                // 6 saniye sonra ana menüyü göster
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                    document.querySelector('.menu').style.display = 'flex';
+                    document.querySelectorAll('.title').forEach(title => {
+                        title.style.display = 'block';
+                    });
+                }, 6000);
+            }
+        }
+
+        function hideLoadingScreen() {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.querySelector('.menu').style.display = 'flex'; // Ensure the menu stays hidden
+        }
+
+        function startGame() {
+            // Matematik Quiz'i başlat
+            startMathQuiz();
+        }
+
+        function showAbout() {
+            document.querySelector('.menu').style.display = 'none';
+            document.getElementById('aboutScreen').style.display = 'block';
+            hideTitle();
+        }
+
+        function closeAbout() {
+            document.getElementById('aboutScreen').style.display = 'none';
+            document.querySelector('.menu').style.display = 'flex';
+            showTitle();
+        }
+
+        function showSettings() {
+            // Ayarlar button action
+            document.querySelector('.menu').style.display = 'none';
+            document.getElementById('settingsMenu').style.display = 'block';
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsMenu').style.display = 'none';
+            document.querySelector('.menu').style.display = 'flex';
+            showTitle();
+        }
+
+        function showTitle() {
+            document.querySelectorAll('.title').forEach(title => {
+                title.style.display = 'block';
+            });
+        }
+
+        function toggleSes() {
+            alert("Ses ayarları bağlandı!");
+        }
+
+        function toggleMuzik() {
+            alert("Müzik ayarları bağlandı!");
+        }
+
+        function hideTitle() {
+            document.querySelectorAll('.title').forEach(title => {
+                title.style.display = 'none';
+            });
+        }
+    </script>
+    <style>
+        /* From Uiverse.io by asgardOP */
+        .ul {
+          width: fit-content;
+          height: fit-content;
+          background-color: transparent;
+          list-style: none;
+        }
+        .li {
+          margin-bottom: 0px;
+        }
+        .button {
+          background-color: transparent;
+          font-family: sans-serif;
+          color: rgb(255, 255, 255);
+          border: none;
+          font-size: 22px;
+          font-weight: 700;
+          padding: 10px 30px;
+          cursor: pointer;
+          position: relative;
+          padding-left: 11px;
+          text-align: center;
+          transition: 0.1s;
+          z-index: 1;
+        }
+        
+        .p {
+          z-index: 2;
+          position: relative;
+        }
+        
+        .button:hover {
+      color: rgb(172, 40, 0);
+      text-align: center;
+    }
+    .button:hover::before {
+      transform: rotate(0deg);
+      width: 100%;
+      height: 40px;
+      top: 2px;
+      top: 30%;
+      left: 1%;
+      border-radius: 3px;
+      background-color: rgb(255, 83, 53);
+    }
+    .button::before {
+      content: "";
+      border-radius: 1px;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: tomato;
+      left: -10px;
+      top: 19px;
+      top: 45%;
+      
+      cursor: pointer;
+      transform: rotate(225deg);
+      transition: 0.3s;
+      z-index: -1;
+    }
+    
+    .button:active::before {
+      background-color: rgb(255, 38, 0);
+    }
+    </style>
+</body>
+</html>

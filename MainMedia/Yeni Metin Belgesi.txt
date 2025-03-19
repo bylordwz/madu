@@ -1,0 +1,4 @@
+Key store path: 34wardenzone.keystore34
+Key store password: 34wardenzone34
+Key alias: 34wardenzone34
+Key password: 34wardenzone34

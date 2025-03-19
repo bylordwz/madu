@@ -1,0 +1,71 @@
+
+1. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: 0'dan 20'ye kadar sayıları tanıma ve yazma, basit toplama ve çıkarma işlemleri.
+- Geometri: Temel şekilleri tanıma (kare, üçgen, daire vb.).
+- Ölçme: Uzunluk ölçme, zaman kavramı (saatler, günler).
+- Veri İşleme: Basit grafikler ve tablolar oluşturma.
+
+2. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: 100'e kadar sayılar, çift ve tek sayılar, basit çarpma ve bölme işlemleri.
+- Geometri: Şekillerin özellikleri, simetri kavramı.
+- Ölçme: Ağırlık ve sıvı ölçüleri, para birimleri.
+- Veri İşleme: Veri toplama ve değerlendirme.
+
+3. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: 1000'e kadar sayılar, dört işlem becerileri.
+- Geometri: Açıları tanıma, temel geometrik cisimler.
+- Ölçme: Zaman ölçme (dakika, saat), alan ve çevre hesaplamaları.
+- Veri İşleme: Grafik okuma ve oluşturma.
+
+4. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Büyük sayılar, kesirler, ondalık sayılar.
+- Geometri: Açı ölçme, simetri ve yansıma.
+- Ölçme: Alan ve çevre hesaplamaları, zaman problemleri.
+- Veri İşleme: Veri analizi ve yorumlama.
+
+5. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Tam sayılar, kesirlerle işlemler.
+- Geometri: Açılar, çokgenler, üçgen ve dörtgenlerin özellikleri.
+- Ölçme: Hacim ve kütle ölçümleri.
+- Veri İşleme: Ortalama hesaplama, veri yorumlama.
+
+6. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Oran, orantı, yüzde hesaplamaları.
+- Geometri: Dikdörtgen prizma, piramit gibi cisimlerin özellikleri.
+- Ölçme: Alan, hacim hesaplamaları.
+- Veri İşleme: Olasılık kavramı, veri analizi.
+
+7. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Cebirsel ifadeler, denklem çözme.
+- Geometri: Çember ve daire, açılar ve özellikleri.
+- Ölçme: Alan ve hacim hesaplamaları, ölçek problemleri.
+- Veri İşleme: İstatistiksel veriler, grafikler.
+
+8. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Karmaşık cebirsel ifadeler, eşitsizlikler.
+- Geometri: Dönüşümler, simetri, benzerlik ve eşlik.
+- Ölçme: Daire dilimi alanı, yüzey alanı ve hacim hesaplamaları.
+- Veri İşleme: Olasılık ve istatistik.
+
+9. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Kümeler, fonksiyonlar, polinomlar.
+- Geometri: Doğrular ve açılar, üçgenler, çokgenler.
+- Ölçme: Trigonometri, dik üçgen trigonometrisi.
+- Veri İşleme: İstatistik ve olasılık.
+
+10. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: İkinci dereceden denklemler, eşitsizlikler.
+- Geometri: Çember ve daire, analitik geometri.
+- Ölçme: Trigonometri, dönüşüm geometrisi.
+- Veri İşleme: Permütasyon, kombinasyon, binom açılımı.
+
+11. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Logaritma, diziler ve seriler.
+- Geometri: Konikler, uzay geometri.
+- Ölçme: Türev ve uygulamaları.
+- Veri İşleme: İstatistik ve olasılık.
+
+12. Sınıf Matematik Konuları:
+- Sayılar ve İşlemler: Limit ve Süreklilik, Türev ve Uygulamaları, İntegral ve Uygulamaları.
+- Geometri: Katı Cisimler, Dönüşümler ve Simetri.
+- Veri İşleme ve Olasılık: İstatistik ve Dağılımlar, Olasılık ve Kombinatorik.
