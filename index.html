@@ -336,93 +336,6 @@
             <li class="li">
                 <button class="button" onclick="showAbout(); hideTitle()"><p class="p">Hakkımızda</p></button>
             </li>
-            <li class="li">
-                <button class="button" onclick="showSettings(); hideTitle()"><p class="p">Ayarlar</p></button>
-            </li>
-        </ul>
-    </div>
-
-    <div id="settingsMenu" style="display: none;">
-        <h2 style="margin-bottom: 20px;">Ayarlar</h2>
-        <br>
-        <div style="margin-bottom: 20px; text-align: middle;">
-            <h3>Ses</h3>
-            <br>
-            <br>
-            <label class="slider">
-                <input type="range" class="level" />
-                <svg
-                    class="volume"
-                    xmlns="http://www.w3.org/2000/svg"
-                    version="1.1"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    width="0"
-                    height="0"
-                    x="0"
-                    y="0"
-                    
-                    viewBox="0 0 0 0"
-                    style="enable-background:new 0 0 0 0"
-                    xml:space="preserve"
-                >
-                    <g>
-                        <path
-                            d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
-                            fill="currentColor"
-                            data-original="#000000"
-                        ></path>
-                        <path
-                            d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
-                            fill="currentColor"
-                            data-original="#000000"
-                        ></path>
-                    </g>
-                </svg>
-            </label>
-        </div>
-        <div style="margin-bottom: 20px; text-align: middle;">
-            <br>
-            <br>
-            <h3>Müzik</h3>
-            <br>
-            <br>
-            <label class="slider">
-                <input type="range" class="level" />
-                <svg
-                    class="volume"
-                    xmlns="http://www.w3.org/2000/svg"
-                    version="1.1"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    width="0"
-                    height="0"
-                    x="0"
-                    y="0"
-                    viewBox="0 0 0 0"
-                    style="enable-background:new 0 0 0 0"
-                    xml:space="preserve"
-                >
-                    <g>
-                        <path
-                            d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
-                            fill="currentColor"
-                            data-original="#000000"
-                        ></path>
-                        <path
-                            d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
-                            fill="currentColor"
-                            data-original="#000000"
-                        ></path>
-                    </g>
-                </svg>
-            </label>
-        </div>
-        <br>
-        <br>
-        <br>
-        <ul class="ul">
-            <li class="li">
-                <button class="button" onclick="closeSettings()"><p class="p">Kapat</p></button>
-            </li>
         </ul>
     </div>
 
@@ -521,7 +434,6 @@
             if (!document.hidden) { // Prevent showing loading screen when switching tabs
                 document.getElementById('loadingScreen').style.display = 'flex'; // 'block' yerine 'flex' kullanın
                 document.querySelector('.menu').style.display = 'none';
-                document.getElementById('settingsMenu').style.display = 'none';
                 document.getElementById('aboutScreen').style.display = 'none';
                 
                 document.querySelectorAll('.title').forEach(title => {
@@ -560,19 +472,7 @@
             document.querySelector('.menu').style.display = 'flex';
             showTitle();
         }
-
-        function showSettings() {
-            // Ayarlar button action
-            document.querySelector('.menu').style.display = 'none';
-            document.getElementById('settingsMenu').style.display = 'block';
-        }
-
-        function closeSettings() {
-            document.getElementById('settingsMenu').style.display = 'none';
-            document.querySelector('.menu').style.display = 'flex';
-            showTitle();
-        }
-
+        
         function showTitle() {
             document.querySelectorAll('.title').forEach(title => {
                 title.style.display = 'block';
